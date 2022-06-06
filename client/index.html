@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Comparify</title>
 </head>
 <body>
     <div id = "input-area">
         <p>Item</p>
         <input type="text" name="item-input" id="item-input">
-        <button type="submit">Add Item</button>
+        <button type="submit" id="add-item" >Add Item</button>
     </div>
-    <div class="list">
+    <div class="card-container">
         <div class="card">
-            <ul>
-                <li>Unga</li>
-                <li>cooking oil</li>
-                <li>Rice</li>
-                <li>Pampers</li>
-                <li>Sugar</li>
+            <ul class="list" id="list">
+                
             </ul>
         </div>
     </div>
-    <button>Get Prices</button>
+    <button id="get-prices">Get Prices</button>
 </body>
+    <script src="index.js"></script>
 </html>
