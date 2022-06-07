@@ -2,7 +2,13 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const server = http.createServer((req,res)=>{
+const PORT = process.env.PORT || 5000;
+http.createServer((req,res)=>{
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Request-Method", "*");
+    res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     
     let filePath = path.join(path.parse(__dirname).dir, 'client', req.url === '/' ? 'index.html' : req.url);
 
@@ -43,8 +49,10 @@ const server = http.createServer((req,res)=>{
             }
         }else {
             // succesful response
-            res.writeHead(200, {'Content-Type' : contentType})
-            res.end(content, 'utf-8')
+            if(res.headersSent !== true){
+                res.writeHead(200, {'Content-Type' : contentType})
+                res.end(content, 'utf-8')
+            }
         }
     })
 
@@ -63,10 +71,6 @@ const server = http.createServer((req,res)=>{
    }
    
    
-});
-
-const PORT = process.env.PORT || 5000;
-
-server.listen(PORT,()=>{
+}).listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
 })
